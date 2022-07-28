@@ -80,6 +80,7 @@ GEM
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     digest (3.1.0)
+    erb-formatter (0.3.0)
     erubi (1.10.0)
     ffi (1.15.5)
     globalid (1.0.0)
@@ -227,6 +228,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  erb-formatter
   jbuilder (~> 2.7)
   listen (~> 3.3)
   net-smtp

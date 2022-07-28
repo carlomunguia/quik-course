@@ -60,3 +60,4 @@ group :development do
 end
 
 gem 'net-smtp'
+gem 'erb-formatter'
