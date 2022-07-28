@@ -2,6 +2,7 @@
   "name": "quik-course",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.2",
     "@popperjs/core": "^2.11.5",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",

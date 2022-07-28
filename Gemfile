@@ -61,3 +61,5 @@ end
 
 gem 'net-smtp'
 gem 'erb-formatter'
+gem 'haml-rails'
+gem 'simple_form'
