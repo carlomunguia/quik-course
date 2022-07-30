@@ -1,0 +1,5 @@
+- flash.each do |key, value|
+    %div{:class => "card-body list-group-item-#{key.to_s == 'notice' ? 'success' : 'danger'}", :role => "message"}
+        = value
+        %a{"data-dismiss" => "message", :href => "#"}
+            %i.fa.fa-times
