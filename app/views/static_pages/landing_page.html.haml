@@ -1,12 +1,65 @@
-%h1
-  WELCOME TO QUIK COURSE!!!
-= link_to "Privacy Policy", privacy_policy_path
+.container-fluid.text-lg-left.p-5.bg-light
+  .display-4
+    What do you want to learn today?
 
-.fa.fa-flag
-.fab.fa-amazon
-= link_to root_path do
-  .fa.fa-home
+  %br
+  %br
+    .form-inline.my-2.my-lg-0
+      = form_tag(courses_path, method: :get) do
+        .input-group
+          = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+          %span.input-group-append
+            %button.btn.btn-primary.btn-sm{:type => "submit"}
+              %span.fa.fa-search{"aria-hidden" => "true"}
 
-= link_to courses_path, class: 'btn btn-success' do
-  .fa.fa-book
-  Course
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+      /.fa.fa-brain
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
+
+%hr
+%h2
+  Popular Courses
+.container
+  .row.row-cols-1.row-cols-md-3.g-4
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+%hr
+%h2
+  Top Rated Courses
+.container
+  .row.row-cols-1.row-cols-md-3.g-4
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+%hr
+%h2
+  Most Recent Courses
+.container
+  .row.row-cols-1.row-cols-md-3.g-4
+    - @recent_courses.each do |course|
+      = render 'courses/course', course: course
