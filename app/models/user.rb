@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :trackable
+         :trackable,
+         :confirmable
 
   def to_s
     email
