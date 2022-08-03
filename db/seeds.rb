@@ -18,7 +18,11 @@ User.create!(
       {
         title: Faker::Educator.course_name,
         description: Faker::TvShows::TwinPeaks.quote,
-        user_id: User.first.id
+        user_id: User.first.id,
+        short_description: Faker::Games::Myst.quote,
+        language: Faker::ProgrammingLanguage.name,
+        level: "Beginner",
+        price: Faker::Number.between(from: 1000, to: 20_000)
       }
     ]
   )
