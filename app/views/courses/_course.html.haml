@@ -7,6 +7,7 @@
   .card-footer
     .fa.fa-globe-africa
     = course.language
+    .row
     .fa.fa-signal
     = course.level
   .card-footer
@@ -16,7 +17,7 @@
     = course.created_at.strftime("%d-%b-%Y")
     .row
     .fa.fa-chalkboard-teacher
-    = course.user
+    = course.user.username
   .card-footer
     = link_to 'Show', course,  class: 'btn btn-sm btn-primary'
     = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'

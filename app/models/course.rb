@@ -15,4 +15,8 @@ class Course < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  ransacker :price do
+    Arel.sql("to_char(\"#{table_name}\".\"price\", '99999999999D99')")
+  end
 end

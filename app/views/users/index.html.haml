@@ -2,31 +2,33 @@
   - @users.each do |user|
     = render 'users/user', user: user
 %br
-= search_form_for @q do |f|
-  = f.search_field :email_or_sign_in_count_eq, placeholder: 'Email or Sign In Count'
-  = f.submit
-  = link_to users_path, class: 'btn btn-sm btn-secondary text-white' do
-    .fa.fa-sync
+.container
+  = search_form_for @q do |f|
+    = f.search_field :email_or_sign_in_count_eq, placeholder: 'Email or Sign In Count'
+    = f.submit
+    = link_to users_path, class: 'btn btn-sm btn-secondary text-white' do
+      .fa.fa-sync
 %br
-%table.table.table-bordered
-  %thead
-    %tr
-      %th id
-      %th= sort_link(@q, :email)
-      %th= sort_link(@q, :created_at)
-      %th= 'sign_in_count'.humanize
-      %th= 'current_sign_in_at'.humanize
-      %th= 'last_sign_in_at'.humanize
-      %th= 'current_sign_in_ip'.humanize
-      %th= 'last_sign_in_ip'.humanize
-  %tbody
-    - @users.each do |user|
+.container
+  %table.table.table-bordered
+    %thead
       %tr
-        %td= user.id
-        %td= user.email
-        %td= user.created_at
-        %td= user.sign_in_count
-        %td= user.current_sign_in_at
-        %td= user.last_sign_in_at
-        %td= user.current_sign_in_ip
-        %td= user.last_sign_in_ip
+        %th id
+        %th= sort_link(@q, :email)
+        %th= sort_link(@q, :created_at)
+        %th= 'sign_in_count'.humanize
+        %th= 'current_sign_in_at'.humanize
+        %th= 'last_sign_in_at'.humanize
+        %th= 'current_sign_in_ip'.humanize
+        %th= 'last_sign_in_ip'.humanize
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.email
+          %td= user.created_at
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at
+          %td= user.last_sign_in_at
+          %td= user.current_sign_in_ip
+          %td= user.last_sign_in_ip
