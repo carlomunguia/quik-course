@@ -22,18 +22,25 @@
             .fa.fa-users
             Users
 
-      .form-inline.my-2.my-lg-0.me-auto.me-auto
-        = form_tag(courses_path, method: :get) do
-          .input-group
-            = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
-            %span.input-group-append
-              %button.btn.btn-primary.btn-sm{:type => "submit"}
-                %span.fa.fa-search{"aria-hidden" => "true"}
-      %ul.navbar-nav.ms-auto
-        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
-          = link_to root_path, class: 'nav-link' do
-            .fa.fa-home
-            Another link
+      = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+        .input-group.ms-auto
+          = f.search_field :title_or_short_description_or_language_or_price_or_level_or_user_email_cont, placeholder: 'Search!', class: 'form-control form-control-sm'
+          %span.input-group-append
+            %button.btn.btn-primary.btn-sm{:type => "submit"}
+              %span.fa.fa-search{"aria-hidden" => "true"}
+
+      -# .form-inline.my-2.my-lg-0.me-auto.me-auto
+      -#   = form_tag(courses_path, method: :get) do
+      -#     .input-group
+      -#       = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+      -#       %span.input-group-append
+      -#         %button.btn.btn-primary.btn-sm{:type => "submit"}
+      -#           %span.fa.fa-search{"aria-hidden" => "true"}
+      %ul.navbar-nav.ms-right
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(static_pages_activity_path)}"}
+          = link_to static_pages_activity_path, class: 'nav-link' do
+            .fa.fa-bell
+            Activity
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
             %b= current_user.email

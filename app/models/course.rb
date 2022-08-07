@@ -19,4 +19,18 @@ class Course < ApplicationRecord
   ransacker :price do
     Arel.sql("to_char(\"#{table_name}\".\"price\", '99999999999D99')")
   end
+
+  LANGUAGES = [:"English", :"Japanese", :"Nahuatl", :"Navajo"]
+  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+
+  def self.languages
+    LANGUAGES.map { |language| [language, language] }
+  end
+
+  def self.levels
+    LEVELS.map { |level| [level, level] }
+  end
+
+  include PublicActivity::Model
+  tracked owner: Proc.new { |controller, model| controller.current_user }
 end
