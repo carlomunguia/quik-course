@@ -1,9 +1,16 @@
 .container
-  %h1
-    Current Courses
-  %h2
-    = @courses.count
-    found
+  %h3
+    .text-center
+      Courses
+      .badge.bg-info
+        = @courses.count
+
+-# .container
+-#   %h1
+-#     Current Courses
+-#   %h2
+-#     = @courses.count
+-#     found
 .container
   .row
     .col-md-2
