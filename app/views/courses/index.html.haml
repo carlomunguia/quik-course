@@ -5,13 +5,8 @@
       .badge.bg-info
         = @courses.count
 
--# .container
--#   %h1
--#     Current Courses
--#   %h2
--#     = @courses.count
--#     found
 .container
+  %p-1
   .row
     .col-md-2
       = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|

@@ -2,15 +2,18 @@
   .display-4
     What do you want to learn today?
 
-  %br
-  %br
-    .form-inline.my-2.my-lg-0
-      = form_tag(courses_path, method: :get) do
-        .input-group
-          = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
-          %span.input-group-append
-            %button.btn.btn-primary.btn-sm{:type => "submit"}
-              %span.fa.fa-search{"aria-hidden" => "true"}
+  .p-4
+
+  - if current_user
+    = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+      .input-group
+        = f.search_field :title_or_short_description_or_language_or_price_or_level_or_user_email_cont, placeholder: 'Search!', class: 'form-control-sm'
+        %span.input-group-append
+          %button.btn.btn-primary.btn-sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
+
+%br
+%br
 
 .card-group
   .card.card-body
