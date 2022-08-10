@@ -17,10 +17,10 @@ User.create!(
     [
       {
         title: Faker::Educator.course_name,
-        description: Faker::TvShows::TwinPeaks.quote,
+        description: Faker::Quote.jack_handey,
         user_id: User.first.id,
-        short_description: Faker::Games::Myst.quote,
-        language: Faker::ProgrammingLanguage.name,
+        short_description: Faker::TvShows::TwinPeaks.quote,
+        language: Faker::Nation.language,
         level: "Beginner",
         price: Faker::Number.between(from: 1000, to: 20_000)
       }

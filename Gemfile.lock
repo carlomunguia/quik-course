@@ -153,6 +153,8 @@ GEM
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-mini-profiler (2.3.4)
@@ -200,6 +202,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rolify (6.0.0)
     ruby-lsp (0.2.1)
       language_server-protocol
       sorbet-runtime
@@ -290,9 +293,11 @@ DEPENDENCIES
   pg (~> 1.1)
   public_activity
   puma (~> 5.0)
+  pundit
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6, >= 6.1.6.1)
   ransack
+  rolify
   ruby-lsp
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
