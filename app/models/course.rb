@@ -8,6 +8,8 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5 }
 
   belongs_to :user
+  has_many :lessons, dependent: :destroy
+
   def to_s
     title
   end

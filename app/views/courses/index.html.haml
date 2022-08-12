@@ -14,6 +14,15 @@
         = f.submit
         = link_to courses_path, class: 'btn btn-sm btn-secondary text-white' do
           .fa.fa-sync
+        %br
+        %br
+        Filter Search
+        .fa.fa-filter
+        %br
+        = f.label :language
+        = f.select :language_cont, Course.languages, include_blank: true
+        = f.label :level
+        = f.select :level_cont, Course.levels, include_blank: true
     .col-md-10
       .row.row-cols-1.row-cols-md-3.g-4
         - @courses.each do |course|
