@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1 or /lessons/1.json
   def show
+    authorize @lesson
   end
 
   # GET /lessons/new
@@ -17,6 +18,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
+    authorize @lesson
   end
 
   # POST /lessons or /lessons.json
@@ -41,6 +43,7 @@ class LessonsController < ApplicationController
 
   # PATCH/PUT /lessons/1 or /lessons/1.json
   def update
+    authorize @lesson
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html do
@@ -59,6 +62,7 @@ class LessonsController < ApplicationController
 
   # DELETE /lessons/1 or /lessons/1.json
   def destroy
+    authorize @lesson
     @lesson.destroy
 
     respond_to do |format|
