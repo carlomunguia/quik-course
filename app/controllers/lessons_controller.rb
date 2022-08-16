@@ -14,6 +14,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @course = Course.friendly.find(params[:course_id])
   end
 
   # GET /lessons/1/edit
@@ -24,11 +25,13 @@ class LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
+    @course = Course.friendly.find(params[:course_id])
+    @lesson.course_id = @course.id
 
     respond_to do |format|
       if @lesson.save
         format.html do
-          redirect_to lesson_url(@lesson),
+          redirect_to course_lesson_path(@course, @lesson),
                       notice: "Lesson was successfully created."
         end
         format.json { render :show, status: :created, location: @lesson }
@@ -47,7 +50,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html do
-          redirect_to lesson_url(@lesson),
+          redirect_to course_lesson_path(@course, @lesson),
                       notice: "Lesson was successfully updated."
         end
         format.json { render :show, status: :ok, location: @lesson }
@@ -67,7 +70,8 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to lessons_url, notice: "Lesson was successfully destroyed."
+        redirect_to course_path(@course),
+                    notice: "Lesson was successfully destroyed."
       end
       format.json { head :no_content }
     end
@@ -77,6 +81,7 @@ class LessonsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_lesson
+    @course = Course.friendly.find(params[:course_id])
     @lesson = Lesson.friendly.find(params[:id])
   end
 
