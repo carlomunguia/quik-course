@@ -27,6 +27,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
     @lesson.course_id = @course.id
+    authorize @lesson
 
     respond_to do |format|
       if @lesson.save
@@ -87,6 +88,6 @@ class LessonsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lesson_params
-    params.require(:lesson).permit(:title, :content, :course_id)
+    params.require(:lesson).permit(:title, :content)
   end
 end
