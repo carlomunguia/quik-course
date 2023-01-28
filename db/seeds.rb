@@ -12,6 +12,9 @@ User.create!(
   password_confirmation: "password"
 )
 
+user.skip_confirmation!
+user.save!
+
 30.times do
   Course.create!(
     [

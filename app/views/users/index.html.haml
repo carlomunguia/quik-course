@@ -27,6 +27,8 @@
         %th= 'last_sign_in_at'.humanize
         %th= 'current_sign_in_ip'.humanize
         %th= 'last_sign_in_ip'.humanize
+        %th Confirmed?
+        %th Roles
     %tbody
       - @users.each do |user|
         %tr
@@ -38,3 +40,11 @@
           %td= user.last_sign_in_at
           %td= user.current_sign_in_ip
           %td= user.last_sign_in_ip
+          %td= user.confirmed?
+          %td
+            - user.roles.each do |role|
+              .badge.bg-info
+                = role.name
+            - if policy(user).edit?
+              = link_to 'Edit Roles', edit_user_path(user), class: "btn btn-sm btn-warning"
+
