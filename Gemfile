@@ -69,5 +69,6 @@ gem 'ransack'
 gem 'public_activity'
 gem 'rolify'
 gem 'pundit'
+gem 'pagy'
 
 gem "dartsass-rails", "~> 0.4.0"
