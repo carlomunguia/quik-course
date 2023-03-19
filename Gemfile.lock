@@ -286,7 +286,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit
   rack-mini-profiler (~> 2.0)
-  rails (~> 6.1.6, >= 6.1.6.1)
+  rails (= 6.1.7.2)
   ransack
   rolify
   ruby-lsp

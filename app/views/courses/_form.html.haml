@@ -1,17 +1,21 @@
--# frozen_string_literal: true
-= simple_form_for(@courses) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+.container
+  -# frozen_string_literal: true
+  = simple_form_for(@course) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :title
-    = f.label :description
-    = f.rich_text_area :description
-    = f.input :short_description
-    = f.input :language, as: :select, collection: ["English", "Japanese", "Nahuatl"]
-    = f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"]
-    = f.input :price
+    .form-inputs
+      = f.input :title
+      = f.label :description
+      = f.rich_text_area :description
+      %small= f.error :description, class: 'text-danger'
+      = f.input :short_description
+      /= f.input :language, collection: [ "English", "Polish", "Russian"]
+      = f.input :language, collection: Course.languages, include_blank: true
+      /= f.input :level, collection: [ "Beginner", "Intermediate", "Advanced"]
+      = f.input :level, collection: Course.levels, include_blank: true
+      = f.input :price
 
-  %br
-  .form-actions
-    = f.button :submit
+    %br
+    .form-actions
+      = f.button :submit

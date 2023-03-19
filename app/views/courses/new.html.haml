@@ -1,9 +1,14 @@
+- content_for :title do
+  QuikCourse
+  \|
+  New Course
+
 .card
   .card-header
     %h3
-      .far.fa-graduation-cap
+      .fa.fa-graduation-cap
       New course
   .card-body
     = render 'form'
-
-= link_to 'Back', courses_path
+  .card-footer
+    = link_to 'Back', courses_path
