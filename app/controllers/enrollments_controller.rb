@@ -5,6 +5,7 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments or /enrollments.json
   def index
     @enrollments = Enrollment.all
+    authorize @enrollments
   end
 
   # GET /enrollments/1 or /enrollments/1.json
@@ -18,6 +19,7 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/1/edit
   def edit
+    authorize @enrollment
   end
 
   # POST /enrollments or /enrollments.json
@@ -34,6 +36,7 @@ class EnrollmentsController < ApplicationController
 
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
+    authorize @enrollment
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html do
@@ -52,6 +55,7 @@ class EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
+    authorize @enrollment
     @enrollment.destroy
 
     respond_to do |format|
