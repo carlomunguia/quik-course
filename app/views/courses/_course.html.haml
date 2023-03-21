@@ -11,6 +11,7 @@
     .fa.fa-signal
     = course.level
   .card-footer
+    = enrollment_button(course)
     = number_to_currency(course.price)
   .card-footer
     .fa.fa-book-open

@@ -1,5 +1,6 @@
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[show edit update destroy]
+  before_action :set_course, only: %i[new create]
 
   # GET /enrollments or /enrollments.json
   def index
@@ -21,22 +22,13 @@ class EnrollmentsController < ApplicationController
 
   # POST /enrollments or /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
-    @enrollment.price = @enrollment.course.price
-
-    respond_to do |format|
-      if @enrollment.save
-        format.html do
-          redirect_to enrollment_url(@enrollment),
-                      notice: "Enrollment was successfully created."
-        end
-        format.json { render :show, status: :created, location: @enrollment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json do
-          render json: @enrollment.errors, status: :unprocessable_entity
-        end
-      end
+    if @course.price > 0
+      flash[:alert] = "You cannot access paid courses yet."
+      redirect_to new_course_enrollment_path(@course)
+    else
+      @enrollment = current_user.buy_course(@course)
+      redirect_to course_path(@course),
+                  notice: "You have successfully enrolled in the course!"
     end
   end
 
@@ -74,12 +66,15 @@ class EnrollmentsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.friendly.find(params[:course_id])
+  end
   def set_enrollment
     @enrollment = Enrollment.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def enrollment_params
-    params.require(:enrollment).permit(:course_id, :user_id, :rating, :review)
+    params.require(:enrollment).permit(:rating, :review)
   end
 end
